@@ -1,12 +1,12 @@
 # 请先在https://github.com/microsoft/playwright-python 安装好playwright，再填入用户名和密码，注意保留引号
+import random
+import time
+from playwright.sync_api import sync_playwright
 username = ""
 password = ""
 
 # 用户配置区结束
 
-from playwright.sync_api import sync_playwright
-import time
-import random
 
 def run(playwright):
     browser = playwright.chromium.launch(headless=False)
@@ -25,31 +25,32 @@ def run(playwright):
     page.fill("input[name=\"username\"]", username)
 
     # Click input[name="password"]
-    page.click("input[name=\"password\"]")
+    page.click("input[name=\"passwordText\"]")
 
     # Fill input[name="password"]
-    page.fill("input[name=\"password\"]", password)
+    page.fill("input[name=\"passwordText\"]", password)
 
     # Click form[id="loginFromId"] >> text="登录"
-    page.click("form[id=\"loginFromId\"] >> text=\"登录\"")
+    page.click("a[id=\"login_submit\"] >> text=\"登录\"")
     # assert page.url == "http://e-office2.nuist.edu.cn/taskcenter/workflow/index"
 
-    time.sleep(random.randint(0,3))
+    time.sleep(random.randint(0, 3))
     # Fill input[name="fieldSTQKfrtw"]
-    page.fill("input[name=\"fieldSTQKfrtw\"]", str(36+(random.randint(0,9)/10)))
-    time.sleep(random.randint(0,3))
+    page.fill("input[name=\"fieldSTQKfrtw\"]",
+              str(36+(random.randint(0, 9)/10)))
+    time.sleep(random.randint(0, 3))
     # Check input[name="fieldCNS"]
     page.check("input[name=\"fieldCNS\"]")
-    time.sleep(random.randint(0,3))
+    time.sleep(random.randint(0, 3))
     # Click text="确认填报"
     page.click("text=\"确认填报\"")
-    time.sleep(random.randint(0,3))
+    time.sleep(random.randint(0, 3))
     # Click text="好"
     page.click("text=\"好\"")
-    time.sleep(random.randint(0,3))
+    time.sleep(random.randint(0, 3))
     # Click text="确定"
     page.click("text=\"确定\"")
-    time.sleep(random.randint(0,3))
+    time.sleep(random.randint(0, 3))
 
     # Close page
     page.close()
@@ -57,6 +58,7 @@ def run(playwright):
     # ---------------------
     context.close()
     browser.close()
+
 
 with sync_playwright() as playwright:
     run(playwright)
