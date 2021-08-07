@@ -34,6 +34,7 @@ jobs:
       - name: Send the result to Telegram
         uses: appleboy/telegram-action@master
         with:
+          if: ${{ secrets.TELEGRAM_TOKEN }}
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: 健康日报：${{ steps.script.outcome }}
