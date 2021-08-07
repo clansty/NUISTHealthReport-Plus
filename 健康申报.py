@@ -1,5 +1,6 @@
 # 请先在https://github.com/microsoft/playwright-python 安装好playwright，再填入用户名和密码，注意保留引号
 import random
+import sys
 import time
 import os
 from playwright.sync_api import sync_playwright
@@ -17,6 +18,8 @@ def run(playwright):
         record_video_dir="videos/",
         record_video_size={"width": 1280, "height": 720}
     )
+
+    err = False
 
     # Open new page
     page = context.new_page()
@@ -63,6 +66,7 @@ def run(playwright):
         time.sleep(random.randint(0, 3))
     except Exception as ex:
         print(ex)
+        err = True
 
     # Close page
     page.close()
@@ -72,6 +76,9 @@ def run(playwright):
     # ---------------------
     context.close()
     browser.close()
+
+    if err:
+        sys.exit(1)
 
 
 with sync_playwright() as playwright:
