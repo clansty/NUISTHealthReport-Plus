@@ -2,7 +2,7 @@ name: Task
 on:
   workflow_dispatch:
   schedule:
-    - corn: '0 1 * * *'
+    corn: '0 1 * * *'
 
 jobs:
   daily-report:
