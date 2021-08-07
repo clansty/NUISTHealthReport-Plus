@@ -3,8 +3,10 @@ import random
 import time
 import os
 from playwright.sync_api import sync_playwright
+
 username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
+
 
 # 用户配置区结束
 
@@ -43,7 +45,7 @@ def run(playwright):
     # Fill input[name="fieldSTQKfrtw"]
     print('正在输入表单信息...')
     page.fill("input[name=\"fieldSTQKfrtw\"]",
-              str(36+(random.randint(0, 9)/10)))
+              str(36 + (random.randint(0, 9) / 10)))
     time.sleep(random.randint(0, 3))
     # Check input[name="fieldCNS"]
     page.check("input[name=\"fieldCNS\"]")
@@ -61,6 +63,8 @@ def run(playwright):
 
     # Close page
     page.close()
+    path = page.video.path()
+    print('::set-output name=VIDEO_PATH::' + path)
 
     # ---------------------
     context.close()

@@ -1,0 +1,41 @@
+name: Task
+on:
+  push:
+    branches:
+      - main
+    schedule:
+      - corn: '0 1 * * *'
+
+jobs:
+  daily-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v2
+        name: Setup Python environment
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+
+      - name: Setup Playwright environment
+        run: |
+          pip install playwright
+          playwright install chromium
+
+      - uses: actions/checkout@v2
+
+      - name: Run the script
+        run: python 健康申报.py
+        id: script
+        env:
+          LANG: en_US.UTF-8
+          LC_CTYPE: en_US.UTF-8
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+
+      - name: Send the result to Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: 健康日报已运行
+          document: ${{ steps.script.outputs.VIDEO_PATH }}
