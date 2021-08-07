@@ -10,7 +10,7 @@ password = os.getenv('PASSWORD')
 
 
 def run(playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context(
         record_video_dir="videos/",
         record_video_size={"width": 1280, "height": 720}
@@ -23,6 +23,7 @@ def run(playwright):
     page.goto("http://e-office2.nuist.edu.cn/infoplus/form/XNYQSB/start")
     time.sleep(5)
     # Click input[name="username"]
+    print('正在登录...')
     page.click("input[name=\"username\"]")
 
     # Fill input[name="username"]
@@ -40,6 +41,7 @@ def run(playwright):
 
     time.sleep(random.randint(0, 3))
     # Fill input[name="fieldSTQKfrtw"]
+    print('正在输入表单信息...')
     page.fill("input[name=\"fieldSTQKfrtw\"]",
               str(36+(random.randint(0, 9)/10)))
     time.sleep(random.randint(0, 3))
@@ -47,6 +49,7 @@ def run(playwright):
     page.check("input[name=\"fieldCNS\"]")
     time.sleep(random.randint(0, 3))
     # Click text="确认填报"
+    print('正在提交...')
     page.click("text=\"确认填报\"")
     time.sleep(random.randint(0, 3))
     # Click text="好"
