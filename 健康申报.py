@@ -17,7 +17,7 @@ def run(playwright):
 
     # Go to http://e-office2.nuist.edu.cn/infoplus/form/XNYQSB/start
     page.goto("http://e-office2.nuist.edu.cn/infoplus/form/XNYQSB/start")
-
+    time.sleep(5)
     # Click input[name="username"]
     page.click("input[name=\"username\"]")
 
@@ -31,7 +31,7 @@ def run(playwright):
     page.fill("input[name=\"passwordText\"]", password)
 
     # Click form[id="loginFromId"] >> text="登录"
-    page.click("a[id=\"login_submit\"] >> text=\"登录\"")
+    page.click("a[id=\"login_submit\"]")
     # assert page.url == "http://e-office2.nuist.edu.cn/taskcenter/workflow/index"
 
     time.sleep(random.randint(0, 3))
@@ -46,10 +46,10 @@ def run(playwright):
     page.click("text=\"确认填报\"")
     time.sleep(random.randint(0, 3))
     # Click text="好"
-    page.click("text=\"好\"")
+    page.click("text=\"Ok\"")
     time.sleep(random.randint(0, 3))
     # Click text="确定"
-    page.click("text=\"确定\"")
+    page.click("text=\"Ok\"")
     time.sleep(random.randint(0, 3))
 
     # Close page
