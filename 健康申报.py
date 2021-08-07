@@ -12,7 +12,7 @@ password = os.getenv('PASSWORD')
 
 
 def run(playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context(
         record_video_dir="videos/",
         record_video_size={"width": 1280, "height": 720}
