@@ -56,10 +56,10 @@ def run(playwright):
         page.click("text=\"确认填报\"")
         time.sleep(random.randint(0, 3))
         # Click text="好"
-        page.click("text=\"Ok\"")
+        page.click("text=/Ok|好/")
         time.sleep(random.randint(0, 3))
         # Click text="确定"
-        page.click("text=\"Ok\"")
+        page.click("text=/Ok|确定/")
         time.sleep(random.randint(0, 3))
     except Exception as ex:
         print(ex)
