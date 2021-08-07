@@ -1,8 +1,6 @@
 name: Task
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
   schedule:
     - corn: '0 1 * * *'
 
