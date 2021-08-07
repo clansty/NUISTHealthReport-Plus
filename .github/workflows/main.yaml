@@ -38,5 +38,5 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: 健康日报：${{ steps.script.conclusion }}
+          message: 健康日报：${{ steps.script.outcome }}
           document: ${{ steps.script.outputs.VIDEO_PATH }}

@@ -12,7 +12,7 @@ password = os.getenv('PASSWORD')
 
 
 def run(playwright):
-    browser = playwright.chromium.launch(headless=True)
+    browser = playwright.chromium.launch(headless=False)
     context = browser.new_context(
         record_video_dir="videos/",
         record_video_size={"width": 1280, "height": 720}
@@ -21,45 +21,48 @@ def run(playwright):
     # Open new page
     page = context.new_page()
 
-    # Go to http://e-office2.nuist.edu.cn/infoplus/form/XNYQSB/start
-    page.goto("http://e-office2.nuist.edu.cn/infoplus/form/XNYQSB/start")
-    time.sleep(5)
-    # Click input[name="username"]
-    print('正在登录...')
-    page.click("input[name=\"username\"]")
+    try:
+        # Go to http://e-office2.nuist.edu.cn/infoplus/form/XNYQSB/start
+        page.goto("http://e-office2.nuist.edu.cn/infoplus/form/XNYQSB/start")
+        time.sleep(5)
+        # Click input[name="username"]
+        print('正在登录...')
+        page.click("input[name=\"username\"]")
 
-    # Fill input[name="username"]
-    page.fill("input[name=\"username\"]", username)
+        # Fill input[name="username"]
+        page.fill("input[name=\"username\"]", username)
 
-    # Click input[name="password"]
-    page.click("input[name=\"passwordText\"]")
+        # Click input[name="password"]
+        page.click("input[name=\"passwordText\"]")
 
-    # Fill input[name="password"]
-    page.fill("input[name=\"passwordText\"]", password)
+        # Fill input[name="password"]
+        page.fill("input[name=\"passwordText\"]", password)
 
-    # Click form[id="loginFromId"] >> text="登录"
-    page.click("a[id=\"login_submit\"]")
-    # assert page.url == "http://e-office2.nuist.edu.cn/taskcenter/workflow/index"
+        # Click form[id="loginFromId"] >> text="登录"
+        page.click("a[id=\"login_submit\"]")
+        # assert page.url == "http://e-office2.nuist.edu.cn/taskcenter/workflow/index"
 
-    time.sleep(random.randint(0, 3))
-    # Fill input[name="fieldSTQKfrtw"]
-    print('正在输入表单信息...')
-    page.fill("input[name=\"fieldSTQKfrtw\"]",
-              str(36 + (random.randint(0, 9) / 10)))
-    time.sleep(random.randint(0, 3))
-    # Check input[name="fieldCNS"]
-    page.check("input[name=\"fieldCNS\"]")
-    time.sleep(random.randint(0, 3))
-    # Click text="确认填报"
-    print('正在提交...')
-    page.click("text=\"确认填报\"")
-    time.sleep(random.randint(0, 3))
-    # Click text="好"
-    page.click("text=\"Ok\"")
-    time.sleep(random.randint(0, 3))
-    # Click text="确定"
-    page.click("text=\"Ok\"")
-    time.sleep(random.randint(0, 3))
+        time.sleep(random.randint(0, 3))
+        # Fill input[name="fieldSTQKfrtw"]
+        print('正在输入表单信息...')
+        page.fill("input[name=\"fieldSTQKfrtw\"]",
+                  str(36 + (random.randint(0, 9) / 10)))
+        time.sleep(random.randint(0, 3))
+        # Check input[name="fieldCNS"]
+        page.check("input[name=\"fieldCNS\"]")
+        time.sleep(random.randint(0, 3))
+        # Click text="确认填报"
+        print('正在提交...')
+        page.click("text=\"确认填报\"")
+        time.sleep(random.randint(0, 3))
+        # Click text="好"
+        page.click("text=\"Ok\"")
+        time.sleep(random.randint(0, 3))
+        # Click text="确定"
+        page.click("text=\"Ok\"")
+        time.sleep(random.randint(0, 3))
+    except Exception as ex:
+        print(ex)
 
     # Close page
     page.close()
