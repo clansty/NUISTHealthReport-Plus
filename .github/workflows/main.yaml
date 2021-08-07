@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-    schedule:
-      - corn: '0 1 * * *'
+  schedule:
+    - corn: '0 1 * * *'
 
 jobs:
   daily-report:
