@@ -2,7 +2,7 @@ name: Task
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 23 * * *'
 
 jobs:
   daily-report:
@@ -33,8 +33,8 @@ jobs:
 
       - name: Send the result to Telegram
         uses: appleboy/telegram-action@master
-        with:
-          if: ${{ secrets.TELEGRAM_TOKEN }}
+        if: ${{ secrets.TELEGRAM_TOKEN }}
+        with:          
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: 健康日报：${{ steps.script.outcome }}
