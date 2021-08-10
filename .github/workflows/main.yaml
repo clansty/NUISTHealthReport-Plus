@@ -33,7 +33,7 @@ jobs:
 
       - name: Send the result to Telegram
         uses: appleboy/telegram-action@master
-        if: ${{ secrets.TELEGRAM_TOKEN }}
+        if: ${{ !!secrets.TELEGRAM_TOKEN }}
         with:          
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
