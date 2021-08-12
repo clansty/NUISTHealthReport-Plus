@@ -15,5 +15,5 @@
    - `TELEGRAM_TOKEN`：通过 [@BotFather](https://t.me/BotFather) 获得的 Bot Token
 4. 进入 Actions 页面，手动执行一次 Action
 
-然后每天的北京时间早上 9 点就会自动完成健康申报
+然后每天的北京时间早上 7 点到 8 点之间（实测）就会自动完成健康申报
 
