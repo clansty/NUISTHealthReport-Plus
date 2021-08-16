@@ -18,6 +18,7 @@ def run(playwright):
         record_video_dir="videos/",
         record_video_size={"width": 1280, "height": 720}
     )
+    context.set_default_timeout(60 * 1000)
 
     err = False
 
