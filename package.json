@@ -1,9 +1,10 @@
 {
   "name": "nuist-health-report",
-  "version": "0.0.114",
+  "version": "114.514.3",
   "description": "Daily health report for NUSHIT.",
   "author": "lixiang810 & Clansty",
   "license": "AGPL-3.0-or-later",
+  "source": "https://github.com/Clansty/NUISTHealthReport",
   "packageManager": "yarn@3.1.1",
   "scripts": {
     "build": "rimraf ./dist && webpack --config webpack.prod.js",
