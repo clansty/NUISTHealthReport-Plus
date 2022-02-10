@@ -8,6 +8,9 @@ import getWID from './utils/getWID';
 import timeUtils from './utils/timeUtils';
 
 (async ($) => {
+  while (!$('div.bh-btn-default[data-action=showHistory]').length) {
+    await delay(500);
+  }
   delay(1000);
   const btn = document.createElement('div');
   btn.className = 'bh-btn bh-btn-primary';
