@@ -7,17 +7,16 @@ import getTemp from './utils/getTemp';
 import getWID from './utils/getWID';
 import timeUtils from './utils/timeUtils';
 
-(async () => {
+(async ($) => {
   delay(1000);
-  console.log(
-    `官吏和常备军是资产阶级社会身上的“寄生物”，是使这个社会分裂的内部矛盾所产生的寄生物，而且正是“堵塞”生命的毛孔的寄生物。
-    ——列宁《国家与革命》`,
-  );
-  const savedReports = await request.getMyDailyReport();
-  const lastReport: IRecord = savedReports.rows[0];
-  const now = new Date();
-  for (let i = 1; i < 20; i += 1) {
-    now.setDate(i);
+  const btn = document.createElement('div');
+  btn.className = 'bh-btn bh-btn-primary';
+  btn.innerText = '一键签到（今日）';
+  $('div.bh-btn-default[data-action=showHistory]').after(btn);
+  btn.onclick = async () => {
+    const savedReports = await request.getMyDailyReport();
+    const lastReport: IRecord = savedReports.rows[0];
+    const now = new Date();
     console.log(savedReports);
     const WID = getWID(lastReport.USER_ID, now);
     console.log(WID === lastReport.WID);
@@ -37,7 +36,8 @@ import timeUtils from './utils/timeUtils';
     await request.HealthDailyInfoSave(reportToSend);
     const res = await request.HealthDailyInfoSave(reportToSend);
     console.log(res);
-  }
-  console.log('签到完毕');
+    console.log('签到完毕');
+    alert('签到完毕');
+  };
   return 0;
-})();
+})(jQuery);

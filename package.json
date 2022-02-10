@@ -2,7 +2,7 @@
   "name": "nuist-health-report",
   "version": "0.0.114",
   "description": "Daily health report for NUSHIT.",
-  "author": "lixiang810",
+  "author": "lixiang810 & Clansty",
   "license": "AGPL-3.0-or-later",
   "packageManager": "yarn@3.1.1",
   "scripts": {
@@ -10,6 +10,7 @@
     "dev": "webpack serve --open --config webpack.dev.js"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.13",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "css-loader": "^6.6.0",
