@@ -27,7 +27,6 @@ const doCheckin = async (now: Date) => {
   const res = await request.HealthDailyInfoSave(reportToSend);
   console.log(res);
   console.log('签到完毕');
-  alert('签到完毕');
 };
 
 export default doCheckin;
